@@ -18,7 +18,7 @@ defmodule TapeEquilibrium do
   defp count_result(left_sum, head, total_sum) do
     with left_sum <- left_sum + head,
          right_sum <- total_sum - left_sum,
-         result <- max(left_sum, right_sum) - min(left_sum, right_sum) do
+         result <- max_number(left_sum, right_sum) - min_number(left_sum, right_sum) do
       {left_sum, result}
     end
   end
@@ -32,6 +32,11 @@ defmodule TapeEquilibrium do
   # BASE CASE
   defp sum([], acc), do: acc
   defp sum([head | tail], acc), do: sum(tail, acc + head)
+
+  defp max_number(left_sum, right_sum) when left_sum > right_sum, do: left_sum
+  defp max_number(left_sum, right_sum) when left_sum < right_sum, do: right_sum
+  defp min_number(left_sum, right_sum) when left_sum < right_sum, do: left_sum
+  defp min_number(left_sum, right_sum) when left_sum > right_sum, do: right_sum
 end
 
 {time, solution} = :timer.tc(fn -> TapeEquilibrium.main([3, 1, 2, 4, 3]) end)
