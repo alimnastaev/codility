@@ -1,5 +1,5 @@
 defmodule TapeEquilibrium do
-  def run(list) do
+  def main(list) do
     total_sum = sum(list)
     run(list, {0, total_sum, total_sum})
   end
@@ -34,13 +34,13 @@ defmodule TapeEquilibrium do
   defp sum([head | tail], acc), do: sum(tail, acc + head)
 end
 
-{time, solution} = :timer.tc(fn -> TapeEquilibrium.run([3, 1, 2, 4, 3]) end)
+{time, solution} = :timer.tc(fn -> TapeEquilibrium.main([3, 1, 2, 4, 3]) end)
 
 IO.puts("Given: [3, 1, 2, 4, 3]: output is:")
 IO.inspect(solution)
 IO.puts("#{time / 1000} ms \n")
 
-{time, solution} = :timer.tc(fn -> TapeEquilibrium.run([99, 1]) end)
+{time, solution} = :timer.tc(fn -> TapeEquilibrium.main([99, 1]) end)
 
 IO.puts("Given: [99, 1]: output is:")
 IO.inspect(solution)
